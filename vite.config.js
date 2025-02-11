@@ -9,25 +9,25 @@ export default defineConfig({
     replace({
       preventAssignment: true,
       values: {
-        "process.env.NODE_ENV": JSON.stringify("production"), // 📌 Reemplaza `process.env.NODE_ENV` con "production"
-        "process.env": JSON.stringify({}), // 📌 Evita cualquier otra referencia a `process.env`
+        "process.env.NODE_ENV": JSON.stringify("production"),
+        "process.env": JSON.stringify({}), // Reemplaza cualquier referencia a `process.env`
       },
     }),
     inject({
-      process: "process", // 📌 Inyecta un objeto `process` para evitar errores
+      process: "process", // Inyecta `process` en caso de que alguna librería lo requiera
     }),
   ],
   define: {
-    "process.env": {}, // 📌 Define `process.env` como un objeto vacío
+    "process.env": {}, // Define `process.env` como un objeto vacío
   },
   build: {
     lib: {
-      entry: "src/ChatWidget.jsx", // 📌 Asegúrate de que este es el archivo correcto de entrada
+      entry: "src/ChatWidget.jsx",
       name: "ChatWidget",
       fileName: (format) => `chat-widget.${format}.js`,
     },
     rollupOptions: {
-      external: ["react", "react-dom"], // 📌 Evita incluir React en el bundle
+      external: ["react", "react-dom"],
       output: {
         globals: {
           react: "React",
