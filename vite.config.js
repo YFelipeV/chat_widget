@@ -1,14 +1,21 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import { nodePolyfills } from "vite-plugin-node-polyfills";
+import replace from "@rollup/plugin-replace";
 import inject from "@rollup/plugin-inject";
 
 export default defineConfig({
-  plugins: [react(), nodePolyfills()],
+  plugins: [
+    react(),
+    replace({
+      "process.env.NODE_ENV": JSON.stringify("production"),
+      preventAssignment: true,
+    }),
+    inject({
+      process: "process", // Inyecta un objeto `process` falso para evitar errores
+    }),
+  ],
   define: {
-    "process.env": {
-      NODE_ENV: '"production"',
-    },
+    "process.env": {}, // Evita que el navegador se queje
   },
   build: {
     lib: {
@@ -24,11 +31,6 @@ export default defineConfig({
           "react-dom": "ReactDOM",
         },
       },
-      plugins: [
-        inject({
-          process: "process",
-        }),
-      ],
     },
   },
 });
