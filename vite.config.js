@@ -8,12 +8,14 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   plugins: [react()],
   mode:"production",
-  define:{
-    'process':{
-      env:{
-        NODE_ENV:JSON.stringify('production')
+  define: {
+    'process.env.NODE_ENV': JSON.stringify('production'),
+    'process.env': JSON.stringify({}),
+    'process': JSON.stringify({
+      env: {
+        NODE_ENV: 'production'
       }
-    }
+    })
   },
   build: {
     lib: {
@@ -30,7 +32,9 @@ export default defineConfig({
           "react/jsx-runtime": "react/jsx-runtime"
         }
       },
-      intro: 'const process = { env: { NODE_ENV: "production" } };'
+      format: 'umd',
+      name: 'ChatWidget',
+      intro: 'if (typeof process === "undefined") { var process = { env: { NODE_ENV: "production" } }; }',
 
       
     },
