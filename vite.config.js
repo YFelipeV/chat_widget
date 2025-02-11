@@ -1,22 +1,25 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import replace from "@rollup/plugin-replace";
+import cdnImport from "vite-plugin-cdn-import";
 
 export default defineConfig({
   plugins: [
     react(),
-    replace({
-      preventAssignment: true,
-      values: {
-        "process.env.NODE_ENV": JSON.stringify("production"), // ✅ Reemplaza `process.env.NODE_ENV`
-        "process.env": JSON.stringify({}), // ✅ Evita cualquier referencia a `process.env`
-        "process": JSON.stringify({}) // ✅ Elimina cualquier referencia a `process`
-      },
+    cdnImport({
+      modules: [
+        {
+          name: "react",
+          global: "React",
+          path: "https://unpkg.com/react@18/umd/react.production.min.js", // ✅ Carga React desde CDN
+        },
+        {
+          name: "react-dom",
+          global: "ReactDOM",
+          path: "https://unpkg.com/react-dom@18/umd/react-dom.production.min.js", // ✅ Carga ReactDOM desde CDN
+        },
+      ],
     }),
   ],
-  define: {
-    "process.env": {}, // ✅ Define `process.env` globalmente para evitar errores
-  },
   build: {
     lib: {
       entry: "src/ChatWidget.jsx",
@@ -24,7 +27,7 @@ export default defineConfig({
       fileName: (format) => `chat-widget.${format}.js`,
     },
     rollupOptions: {
-      external: ["react", "react-dom"], // ✅ Evita incluir React en el bundle final
+      external: ["react", "react-dom"], // ✅ Evita incluir React en el bundle
       output: {
         globals: {
           react: "React",
