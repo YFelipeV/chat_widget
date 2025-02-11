@@ -1,8 +1,13 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import replace from "@rollup/plugin-replace";
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(),
+    replace({
+      'process.env':'import.meta.env'
+    }),
+  ],
   define: {
     'process.env': process.env,
     'process.env.NODE_ENV':"production"
@@ -22,7 +27,7 @@ export default defineConfig({
           'react-dom': 'ReactDOM'
         },
         format: 'umd',
-        name: 'ChatBot',
+        name: 'ChatBot2',
         inlineDynamicImports: true
       }
     },

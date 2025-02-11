@@ -1,4 +1,4 @@
-(function(Il,fr){typeof exports=="object"&&typeof module!="undefined"?module.exports=fr(require("react"),require("react-dom")):typeof define=="function"&&define.amd?define(["react","react-dom"],fr):(Il=typeof globalThis!="undefined"?globalThis:Il||self,Il.ChatBot=fr(Il.React,Il.ReactDOM))})(this,function(Il,fr){"use strict";function Eb(V){return V&&V.__esModule&&Object.prototype.hasOwnProperty.call(V,"default")?V.default:V}var l0={exports:{}},Ah={};/**
+(function(Il,fr){typeof exports=="object"&&typeof module!="undefined"?module.exports=fr(require("react"),require("react-dom")):typeof define=="function"&&define.amd?define(["react","react-dom"],fr):(Il=typeof globalThis!="undefined"?globalThis:Il||self,Il.ChatBot2=fr(Il.React,Il.ReactDOM))})(this,function(Il,fr){"use strict";function Eb(V){return V&&V.__esModule&&Object.prototype.hasOwnProperty.call(V,"default")?V.default:V}var l0={exports:{}},Ah={};/**
  * @license React
  * react-jsx-runtime.production.js
  *
