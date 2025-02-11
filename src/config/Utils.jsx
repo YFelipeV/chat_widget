@@ -14,8 +14,8 @@ export async function reqtsApiForm(
     };
 
     if (withToken) {
-        const token = localStorage.getItem('token')
-       // const token = decryptXOR(tokenQuery || "")
+        const tokenQuery = localStorage.getItem('token')
+        const token = decryptXOR(tokenQuery || "")
         if (token) {
             headers['Authorization'] = `Bearer ${token}`;
         }
