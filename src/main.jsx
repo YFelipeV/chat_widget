@@ -4,27 +4,26 @@ import {ChatWidget} from "./ChatWidget"; // 📌 Importa el widget
 
 export { ChatWidget }; // 📌 Exporta el widget para que pueda ser usado globalmente
 
-/// Función para montar el componente
-const mount = (element, props = {}) => {
-    if (!element) return null
-    
-    const root = ReactDOM.createRoot(element)
-    root.render(
-      <React.StrictMode>
-        <MyComponent {...props} />
-      </React.StrictMode>
-    )
-    
-    return root
-  }
-  
-  // Exportamos la función mount para uso via CDN
-  export { mount }
-  
-  // Auto-inicialización para uso via CDN
-  if (typeof window !== 'undefined') {
-    window.MyLibrary = {
-      mount,
-      ChatWidget
+/// Función de inicialización
+const init = (containerId, config = {}) => {
+    const container = document.getElementById(containerId);
+    if (!container) {
+      console.error(`Container with id "${containerId}" not found`);
+      return;
     }
+  
+    try {
+      const root = ReactDOM.createRoot(container);
+      root.render(
+        <ChatBot {...config} />
+      );
+      return root;
+    } catch (error) {
+      console.error('Error initializing ChatBot:', error);
+    }
+  };
+  
+  // Exportación global
+  if (typeof window !== 'undefined') {
+    window.ChatBot = init;
   }

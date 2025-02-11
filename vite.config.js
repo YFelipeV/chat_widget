@@ -21,7 +21,11 @@ export default defineConfig({
           "react-dom": "ReactDom",
           "react/jsx-runtime": "react/jsx-runtime"
         }
-      }
-    }
+      },
+      
+    },
+    sourcemap: true,
+    minify:false,
+    
   }
 });
