@@ -9,16 +9,20 @@ export default defineConfig({
     replace({
       preventAssignment: true,
       values: {
-        "process.env.NODE_ENV": JSON.stringify("production"),
-        "process.env": JSON.stringify({}), // Reemplaza cualquier referencia a `process.env`
+        "process.env.NODE_ENV": JSON.stringify("production"), // ✅ Reemplaza NODE_ENV
+        "process.env": JSON.stringify({}), // ✅ Evita cualquier referencia a process.env
+        "process": JSON.stringify({}) // ✅ Asegura que `process` esté definido en el bundle
       },
     }),
     inject({
-      process: "process", // Inyecta `process` en caso de que alguna librería lo requiera
+      process: "process", // ✅ Inyecta `process` en caso de que alguna librería lo requiera
     }),
   ],
   define: {
-    "process.env": {}, // Define `process.env` como un objeto vacío
+    "process.env": {}, // ✅ Define `process.env` como un objeto vacío globalmente
+  },
+  optimizeDeps: {
+    include: ["react", "react-dom", "scheduler"], // ✅ Asegura que Vite transpile estas librerías
   },
   build: {
     lib: {
