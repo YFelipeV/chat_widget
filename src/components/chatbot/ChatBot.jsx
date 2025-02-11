@@ -1,10 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react'
 import cormini from '../../assets/images/img/cormini.png'
-import "./styles/chatbot.css"
 import Frequent from './components/Frequent';
 import Message from './components/Message';
 
-export default function ChatBot() {
+export const  ChatBot=()=> {
     const [messages, setMessages] = useState([]);
     const [inputMessage, setInputMessage] = useState("");
     const [isTyping, setIsTyping] = useState(false);
