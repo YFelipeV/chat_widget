@@ -1,0 +1,49 @@
+*{
+  font-family: sans-serif;
+}
+
+
+
+/*
+#################### CHAT BOOT ##################################
+*/
+
+.chat-toogle-media {
+  width: 100px;
+  height: 35px;
+  position: fixed;
+  padding: 10px;
+  right: 10px;
+  bottom: 0px;
+  background-color: var(--bg-chatboot);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+  user-select: none;
+  border-top-left-radius: 17px;
+  border-top-right-radius: 17px;
+  z-index: 1000;
+}
+
+.chat-toogle-media:hover {
+  background-color: var(--bg-chatboot);
+}
+
+.chat-toogle-content {
+  z-index: 1000;
+  width: 60%;
+  height: 87%;
+  position: fixed;
+  right: 20px;
+  bottom: 40px;
+  background-color: white;
+  user-select: none;
+}
+
+.chat-toogle-media>i {
+  color: white;
+  font-size: 1.3rem;
+}
