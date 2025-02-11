@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react(), nodePolyfills()],
   define: {
     "process.env": {
-      NODE_ENV: '"production"', // Definir un valor para NODE_ENV
+      NODE_ENV: "production", 
     },
   },
   build: {
