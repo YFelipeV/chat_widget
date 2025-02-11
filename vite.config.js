@@ -10,13 +10,7 @@ export default defineConfig({
       fileName: (format) => `widget.${format}.js`,
     },
     rollupOptions: {
-      external: ["react", "react-dom"], // 📌 No incluir React en el bundle
-      output: {
-        globals: {
-          react: "React",
-          "react-dom": "ReactDOM",
-        },
-      },
+      external: [], // 📌 No incluir React en el bundle
     },
   },
 });
