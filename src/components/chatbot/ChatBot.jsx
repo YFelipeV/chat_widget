@@ -4,6 +4,7 @@ import cormini from "../../assets/images/img/cormini.png";
 import "./styles/chatbot.css";
 import Frequent from "./components/Frequent";
 import Message from "./components/Message";
+import { getChatHistory, sendMessageApi } from "./services/services";
 
 const ChatBot = () => {
   const [messages, setMessages] = useState([]);
