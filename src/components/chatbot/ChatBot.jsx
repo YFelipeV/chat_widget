@@ -6,6 +6,9 @@ import Frequent from "./components/Frequent";
 import Message from "./components/Message";
 import { getChatHistory, sendMessageApi } from "./services/services";
 
+const IS_PRODUCTION = true;
+const API_URL = 'tu_url_api';
+
 const ChatBot = () => {
   const [messages, setMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState("");
@@ -166,11 +169,30 @@ const ChatBot = () => {
 };
 
 // 📌 Exportar como una variable global para que pueda ser llamado en cualquier proyecto
-window.ChatBot = (containerId) => {
-  const container = document.getElementById(containerId);
-  if (container) {
-    ReactDOM.createRoot(container).render(<ChatBot />);
-  }
-};
+// Función de inicialización
+const initChatBot = (containerId, config = {}) => {
+    // Verificar si estamos en el navegador
+    if (typeof window === 'undefined') return;
+  
+    // Asegurarse de que el contenedor existe
+    const container = document.getElementById(containerId);
+    if (!container) {
+      console.error(`Container with id "${containerId}" not found`);
+      return;
+    }
+  
+    try {
+      const root = ReactDOM.createRoot(container);
+      root.render(
+        <ChatBot {...config} />
+      );
+      return root;
+    } catch (error) {
+      console.error('Error initializing ChatBot:', error);
+    }
+  };
+  
+  // Exportación global
+  window.initChatBot = initChatBot;
 
 export default ChatBot;
